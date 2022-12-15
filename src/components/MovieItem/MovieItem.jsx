@@ -5,6 +5,7 @@ import "./MovieItem.css";
 
 const MovieItem = (props) => {
   const dispatch=useDispatch()
+  const disabled=useSelector(state=>state.movieSlice.isDisabled)
   const { Title, Year, Poster } = props;
   return (
     <article className="movie-item">
@@ -13,7 +14,7 @@ const MovieItem = (props) => {
         <h3 className="movie-item__title">
           {Title}&nbsp;({Year})
         </h3>
-        <button type="button" className="movie-item__add-button">
+        <button onClick={()=> dispatch(addSaveList(props))} disabled={disabled} type="button" className="movie-item__add-button">
           Add to save
         </button>
       </div>

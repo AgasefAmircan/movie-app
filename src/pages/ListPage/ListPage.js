@@ -1,32 +1,47 @@
-import React, { Component } from 'react';
-import './ListPage.css';
+import React from "react";
+import "./ListPage.css";
+import { useSelector } from "react-redux";
 
-class ListPage extends Component {
-    state = {
-        movies: [
-            { title: 'The Godfather', year: 1972, imdbID: 'tt0068646' }
-        ]
-    }
-    componentDidMount() {
-        const id = this.props.match.params;
-        console.log(id);
-    }
-    render() { 
-        return (
-            <div className="list-page">
-                <h1 className="list-page__title">Мой список</h1>
-                <ul>
-                    {this.state.movies.map((item) => {
-                        return (
-                            <li key={item.imdbID}>
-                                <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-        );
-    }
-}
- 
+const ListPage = () => {
+  const inputTitle = useSelector((state) => state.movieSlice.listInput);
+  const save_list = useSelector((state) => state.movieSlice.saveList);
+  const savedList = JSON.parse(localStorage.getItem("movies"));
+  const link = "https://www.imdb.com/title/";
+  const listTitle = JSON.parse(localStorage.getItem("listTitle"));
+  if (savedList.length > 0) {
+    return (
+      <div className="list-page">
+        <h1 className="list-page__title">{listTitle}</h1>
+        <ul>
+          {savedList.map((item) => {
+            return (
+              <li key={item.imdbID}>
+                <a href={link + item.imdbID} target="_blank">
+                  {item.Title} ({item.Year})
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+  return (
+    <div className="list-page">
+      <h1 className="list-page__title">{listTitle}</h1>
+      <ul>
+        {save_list.map((item) => {
+          return (
+            <li key={item.imdbID}>
+              <a href={link + item.imdbID} target="_blank">
+                {item.Title} ({item.Year})
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
 export default ListPage;

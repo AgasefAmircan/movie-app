@@ -6,3 +6,38 @@ body, button, input {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     color: #000807;
 }
+.movienames{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+.movienames li{
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.movienames button:hover{
+    color: white;
+    cursor: pointer;
+    background-color: #000807;
+}
+.movienames button{
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+.favorites__save{
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+a:-webkit-any-link{
+    text-decoration: none;
+}
+a:-webkit-any-link:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.pass_to_list:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}

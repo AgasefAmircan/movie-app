@@ -1,17 +1,21 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import MainPage from './pages/MainPage/MainPage';
-import ListPage from './pages/ListPage/ListPage';
-
-import './reset.css';
-import './common.css';
+import React from "react";
+import MainPage from "./pages/MainPage/MainPage";
+import ListPage from "./pages/ListPage/ListPage";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./reset.css";
+import "./common.css";
 
 class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path="/" exact component={MainPage} />
-        <Route path="/list/:id" exact component={ListPage} />
+        <Router>
+          <Switch>
+            <Route path="/" exact component={MainPage} />
+            <Route path="/list/:id"  component={ListPage} />
+            <Route path="/list/:id?" exact component={ListPage} />
+          </Switch>
+        </Router>
       </div>
     );
   }
